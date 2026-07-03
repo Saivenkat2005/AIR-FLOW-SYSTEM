@@ -20,4 +20,6 @@ public class Flight {
     @NotBlank
     private String takeOffTime;
     private String flightName;
+    private Long totalCapacity = 0L;
+    private Long confirmedCount = 0L;
 }
