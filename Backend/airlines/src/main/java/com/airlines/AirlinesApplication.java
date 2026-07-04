@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +20,7 @@ public class AirlinesApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository,
-						  PasswordEncoder passwordEncode) {
+	CommandLineRunner run(RoleRepository roleRepository, UserRepository userRepository) {
 		return args -> {
 			if (roleRepository.findByAuthority("ADMIN").isPresent())
 				return;
@@ -31,12 +29,16 @@ public class AirlinesApplication {
 				return;
 			Role managerRole = roleRepository.save(new Role("MANAGER"));
 			roleRepository.save(new Role("USER"));
+			
 			List<Role> roles = new ArrayList<>();
 			roles.add(adminRole);
+			
 			List<Role> roless = new ArrayList<>();
 			roless.add(managerRole);
-			ApplicationUser admin = new ApplicationUser((long) 1, "admin", passwordEncode.encode("password"), "rraakesh570@gmail.com", "9876543289", roles);
-			ApplicationUser manager = new ApplicationUser((long) 2, "manager", passwordEncode.encode("12345"), "manager@gmail.com", "1234567890", roless);
+			
+			ApplicationUser admin = new ApplicationUser((long) 1, "admin", "rraakesh570@gmail.com", "9876543289", roles);
+			ApplicationUser manager = new ApplicationUser((long) 2, "manager", "manager@gmail.com", "1234567890", roless);
+			
 			userRepository.save(admin);
 			userRepository.save(manager);
 		};

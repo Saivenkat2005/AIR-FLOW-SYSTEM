@@ -1,7 +1,5 @@
 package com.airlines.entity;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,27 +9,28 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles")
-public class Role implements GrantedAuthority {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private Integer roleId;
     private String authority;
+    
     public Role() {
         super();
     }
+    
     public Role(String authority) {
         this.authority = authority;
     }
+    
     public Role(Integer roleId, String authority) {
         this.roleId = roleId;
         this.authority = authority;
     }
 
-    @Override
     public String getAuthority() {
-        // TODO Auto-generated method stub
         return this.authority;
     }
 

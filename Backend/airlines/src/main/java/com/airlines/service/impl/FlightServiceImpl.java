@@ -55,6 +55,18 @@ public class FlightServiceImpl implements FlightService {
             flightDB.setFlightName(flight.getFlightName());
         if (Objects.nonNull(flight.getTakeOffTime()) && !"".equalsIgnoreCase(flight.getTakeOffTime()))
             flightDB.setTakeOffTime(flight.getTakeOffTime());
+        if (Objects.nonNull(flight.getOrigin()) && !"".equalsIgnoreCase(flight.getOrigin()))
+            flightDB.setOrigin(flight.getOrigin());
+        if (Objects.nonNull(flight.getDestination()) && !"".equalsIgnoreCase(flight.getDestination()))
+            flightDB.setDestination(flight.getDestination());
+        if (Objects.nonNull(flight.getArrivalTime()) && !"".equalsIgnoreCase(flight.getArrivalTime()))
+            flightDB.setArrivalTime(flight.getArrivalTime());
+        if (Objects.nonNull(flight.getAircraftType()) && !"".equalsIgnoreCase(flight.getAircraftType()))
+            flightDB.setAircraftType(flight.getAircraftType());
+        if (Objects.nonNull(flight.getStatus()) && !"".equalsIgnoreCase(flight.getStatus()))
+            flightDB.setStatus(flight.getStatus());
+        if (Objects.nonNull(flight.getTotalCapacity()))
+            flightDB.setTotalCapacity(flight.getTotalCapacity());
         return flightRepository.save(flightDB);
     }
 

@@ -2,7 +2,6 @@ package com.airlines.controller;
 
 import com.airlines.handlers.ResourceNotAvailableException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import com.airlines.dto.BookingDto;
@@ -26,7 +25,6 @@ public class BookingController {
     }
 
     @GetMapping("/get")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<BookingDto> getBookings() {
         return bookingService.getBookings();
     }

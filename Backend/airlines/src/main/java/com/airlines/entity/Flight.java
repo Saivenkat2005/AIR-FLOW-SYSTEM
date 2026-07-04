@@ -22,4 +22,9 @@ public class Flight {
     private String flightName;
     private Long totalCapacity = 0L;
     private Long confirmedCount = 0L;
+    private String origin;
+    private String destination;
+    private String arrivalTime;
+    private String aircraftType;
+    private String status;
 }
