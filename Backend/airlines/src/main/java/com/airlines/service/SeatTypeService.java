@@ -18,4 +18,6 @@ public interface SeatTypeService {
     public void deleteSeatDetailsById(Long seatId);
 
     public List<SeatTypeDTO> getSeatsByFlightId(Long flightId);
+
+    public boolean holdSeat(Long seatId, String userId);
 }

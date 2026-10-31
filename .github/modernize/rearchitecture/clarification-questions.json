@@ -1,0 +1,513 @@
+{
+  "schema": "clarification-questions/v1",
+  "generated_at": "2026-10-30T11:15:00Z",
+  "user_input": "Let's upgrade AIRLINE NEXUS into a premium, ultra-fast, intelligent airline booking platform with smooth animations, modern features, and reliable real-time functionality. Improve the existing repository, preserve the React + Express + Spring Boot + Python FastAPI + MySQL + Redis architecture, preserve existing APIs/database/authentication/booking/payment/search/seat/admin functionality, and implement and test the prioritized improvements in the actual source code.",
+  "title": "Airline Nexus premium platform upgrade",
+  "assessment_snapshot": {
+    "intro": "The repository is a brownfield full-stack airline booking platform with a React/Tailwind frontend, Node/Express gateway, multiple Java/Spring services, a Python/FastAPI AI service, MySQL, Redis, Docker configuration, and existing audit/architecture artifacts.",
+    "bullets": [
+      "Frontend, gateway, Java backend services, AI service, and Docker Compose are present.",
+      "The requested work is an in-place upgrade, not a rewrite, and explicitly requires existing APIs, database schema, authentication, booking, payment, seat, and admin behavior to remain compatible.",
+      "The brief prioritizes bug/API performance fixes, loading and UX improvements, database/Redis reliability, premium UI, live tracking, AI integration, and admin capabilities.",
+      "No current-UI screenshot set, exact target library, exact framework versions, external flight-status provider, or payment/email provider is specified."
+    ]
+  },
+  "proposed_outcome": "Incrementally upgrade the existing Airline Nexus codebase in place, preserving observable contracts and transactional behavior while delivering measured performance improvements, accessible premium UX, reliable real-time capabilities, verified AI assistance, and regression-tested operational features.",
+  "scope": [
+    "frontend",
+    "backend",
+    "generic"
+  ],
+  "status": "awaiting_answers",
+  "questions": [
+    {
+      "id": "F1",
+      "kit": "frontend",
+      "field": "target.framework",
+      "title": "Frontend framework version",
+      "question": "Which React version should be the target for this in-place upgrade?",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "preserve current React version",
+      "default": null,
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "preserve current React version",
+          "label": "Preserve current React version and optimize in place"
+        },
+        {
+          "value": "React 18",
+          "label": "React 18"
+        },
+        {
+          "value": "React 19",
+          "label": "React 19"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F2",
+      "kit": "frontend",
+      "field": "target.component_library",
+      "title": "UI component strategy",
+      "question": "Which component/UI library strategy should the premium frontend use?",
+      "importance": "required",
+      "impact": 4,
+      "recommended": "existing Tailwind plus custom components",
+      "default": null,
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "existing Tailwind plus custom components",
+          "label": "Existing Tailwind CSS plus accessible custom components"
+        },
+        {
+          "value": "shadcn/ui",
+          "label": "shadcn/ui with Tailwind"
+        },
+        {
+          "value": "MUI",
+          "label": "Material UI"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F3",
+      "kit": "frontend",
+      "field": "visual.screenshots",
+      "title": "Current UI references",
+      "question": "Which current-UI screenshots, recordings, staging URLs, or screen references should be used to preserve and improve the existing experience?",
+      "importance": "required",
+      "impact": 5,
+      "recommended": null,
+      "default": null,
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": [],
+      "allow_other": false
+    },
+    {
+      "id": "F4",
+      "kit": "frontend",
+      "field": "visual.design_system",
+      "title": "Design system source",
+      "question": "What design-token source should govern the premium UI?",
+      "importance": "required",
+      "impact": 4,
+      "recommended": "existing Tailwind theme plus brief",
+      "default": null,
+      "prefilled": true,
+      "prefilled_value": "Existing Tailwind theme, CSS, and the supplied navy/cyan premium brief",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "existing Tailwind theme plus brief",
+          "label": "Existing Tailwind theme, CSS, and the supplied navy/cyan premium brief"
+        },
+        {
+          "value": "match existing pixel-by-pixel",
+          "label": "Match the current UI pixel-by-pixel"
+        },
+        {
+          "value": "external design system",
+          "label": "Use an external Figma/Storybook/token source"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F5",
+      "kit": "frontend",
+      "field": "compliance.accessibility",
+      "title": "Accessibility target",
+      "question": "Which accessibility standard should gate the frontend work?",
+      "importance": "recommended",
+      "impact": 4,
+      "recommended": "WCAG 2.1 AA",
+      "default": "WCAG 2.1 AA",
+      "prefilled": true,
+      "prefilled_value": "WCAG 2.1 AA",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "WCAG 2.1 AA",
+          "label": "WCAG 2.1 AA"
+        },
+        {
+          "value": "WCAG 2.2 AA",
+          "label": "WCAG 2.2 AA"
+        },
+        {
+          "value": "Section 508",
+          "label": "Section 508"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F6",
+      "kit": "frontend",
+      "field": "compatibility.browsers",
+      "title": "Browser targets",
+      "question": "Which browser/runtime compatibility target should be supported?",
+      "importance": "recommended",
+      "impact": 3,
+      "recommended": "modern evergreen",
+      "default": "modern evergreen",
+      "prefilled": true,
+      "prefilled_value": "modern evergreen",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "modern evergreen",
+          "label": "Chrome, Firefox, Safari, and Edge latest 2 major versions"
+        },
+        {
+          "value": "latest only",
+          "label": "Latest stable browser versions only"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F7",
+      "kit": "frontend",
+      "field": "responsive.breakpoints",
+      "title": "Responsive strategy",
+      "question": "Which responsive layout strategy should be used?",
+      "importance": "recommended",
+      "impact": 3,
+      "recommended": "mobile-first existing breakpoints",
+      "default": "mobile-first existing breakpoints",
+      "prefilled": true,
+      "prefilled_value": "mobile-first using existing Tailwind breakpoints",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "mobile-first existing breakpoints",
+          "label": "Mobile-first using existing Tailwind breakpoints"
+        },
+        {
+          "value": "desktop-first",
+          "label": "Desktop-first responsive adaptation"
+        },
+        {
+          "value": "match existing layout",
+          "label": "Match current layout breakpoints exactly"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F8",
+      "kit": "frontend",
+      "field": "i18n.locales",
+      "title": "Locales in scope",
+      "question": "Which locales must remain supported?",
+      "importance": "optional",
+      "impact": 2,
+      "recommended": null,
+      "default": "preserve current locales; keep existing i18n library if present",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": [],
+      "allow_other": false
+    },
+    {
+      "id": "F9",
+      "kit": "frontend",
+      "field": "state_mgmt.preference",
+      "title": "Client state strategy",
+      "question": "Which client-side state-management approach should be used?",
+      "importance": "optional",
+      "impact": 3,
+      "recommended": "preserve existing pattern",
+      "default": "preserve existing pattern if identifiable; otherwise recommend minimal (component state + server-state library)",
+      "prefilled": true,
+      "prefilled_value": "Preserve the existing pattern and avoid unnecessary state migration",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "preserve existing pattern",
+          "label": "Preserve the existing pattern and avoid unnecessary state migration"
+        },
+        {
+          "value": "component plus server state",
+          "label": "Minimal component state plus a server-state library"
+        },
+        {
+          "value": "Redux Toolkit",
+          "label": "Redux Toolkit"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "F10",
+      "kit": "frontend",
+      "field": "routing.preference",
+      "title": "Routing strategy",
+      "question": "Which routing strategy should be retained or adopted?",
+      "importance": "optional",
+      "impact": 3,
+      "recommended": "preserve existing router",
+      "default": "use the de-facto router for the chosen target framework",
+      "prefilled": true,
+      "prefilled_value": "Preserve the existing router and URL contracts",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "preserve existing router",
+          "label": "Preserve the existing router and URL contracts"
+        },
+        {
+          "value": "React Router",
+          "label": "React Router"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B1",
+      "kit": "backend",
+      "field": "target.framework",
+      "title": "Backend version targets",
+      "question": "Which backend framework/version targets should be used for the Java services, Express gateway, and FastAPI AI service?",
+      "importance": "required",
+      "impact": 5,
+      "recommended": null,
+      "default": null,
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": [],
+      "allow_other": false
+    },
+    {
+      "id": "B2",
+      "kit": "backend",
+      "field": "api.contract_preservation",
+      "title": "API compatibility policy",
+      "question": "How strictly must all existing external and internal API contracts be preserved?",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "must preserve",
+      "default": "must preserve",
+      "prefilled": true,
+      "prefilled_value": "must preserve",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "must preserve",
+          "label": "Preserve all existing endpoints, payloads, status codes, and authentication behavior"
+        },
+        {
+          "value": "can break with versioning",
+          "label": "Allow breaking changes only behind explicit versioning"
+        },
+        {
+          "value": "partial: preserve booking/payment/auth",
+          "label": "Preserve booking, payment, authentication, search, seat, and admin contracts; version other changes"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B3",
+      "kit": "backend",
+      "field": "data.migration_strategy",
+      "title": "Database migration approach",
+      "question": "How should MySQL schema and data changes be handled during this upgrade?",
+      "importance": "required",
+      "impact": 5,
+      "recommended": "in-place",
+      "default": "TBD / assess in research phase",
+      "prefilled": true,
+      "prefilled_value": "in-place compatible migrations only; preserve existing schema",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "in-place",
+          "label": "In-place compatible migrations only"
+        },
+        {
+          "value": "no migration",
+          "label": "Do not change the schema; optimize queries/indexes only"
+        },
+        {
+          "value": "TBD / assess in research phase",
+          "label": "Assess migration needs during repository research"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B4",
+      "kit": "backend",
+      "field": "auth.framework",
+      "title": "Authentication strategy",
+      "question": "Which authentication/authorization mechanism must remain the source of truth?",
+      "importance": "recommended",
+      "impact": 4,
+      "recommended": "preserve existing JWT and RBAC",
+      "default": "preserve existing auth mechanism; detect from codebase",
+      "prefilled": true,
+      "prefilled_value": "Preserve existing JWT authentication and role-based authorization",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "preserve existing JWT and RBAC",
+          "label": "Preserve existing JWT authentication and role-based authorization"
+        },
+        {
+          "value": "Spring Security",
+          "label": "Spring Security with existing claims/contracts"
+        },
+        {
+          "value": "external identity provider",
+          "label": "Federate to an external identity provider"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "B5",
+      "kit": "backend",
+      "field": "nfr.sla",
+      "title": "Performance acceptance targets",
+      "question": "Which measurable latency, throughput, and availability targets should block acceptance?",
+      "importance": "recommended",
+      "impact": 4,
+      "recommended": null,
+      "default": "match current production baseline; no regression",
+      "prefilled": true,
+      "prefilled_value": "Cache hits under 200 ms and lightweight APIs under 500 ms under documented normal test conditions; preserve current baseline otherwise",
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": [],
+      "allow_other": false
+    },
+    {
+      "id": "G1",
+      "kit": "generic",
+      "field": "success.definition",
+      "title": "Definition of done",
+      "question": "What must be true for this upgrade to be accepted?",
+      "importance": "required",
+      "impact": 5,
+      "recommended": null,
+      "default": "feature parity with the current system; all existing user-facing behaviors preserved",
+      "prefilled": true,
+      "prefilled_value": "Existing functionality preserved; premium responsive UI; real backend-backed flight/seat/booking/payment data; reliable AI, email, Docker, security, builds, integration tests, and documented measured performance with no known critical defects",
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": [],
+      "allow_other": false
+    },
+    {
+      "id": "G2",
+      "kit": "generic",
+      "field": "out_of_scope",
+      "title": "Explicit exclusions",
+      "question": "Which modules, features, providers, or behaviors must not be changed in this upgrade?",
+      "importance": "recommended",
+      "impact": 3,
+      "recommended": null,
+      "default": "no explicit exclusions; agent will infer from project structure",
+      "prefilled": false,
+      "prefilled_value": null,
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": [],
+      "allow_other": false
+    },
+    {
+      "id": "G3",
+      "kit": "generic",
+      "field": "existing_tests.posture",
+      "title": "Existing test policy",
+      "question": "What is the required posture for the existing test suites?",
+      "importance": "recommended",
+      "impact": 4,
+      "recommended": "must pass",
+      "default": "must pass",
+      "prefilled": true,
+      "prefilled_value": "must pass",
+      "answer": null,
+      "depends_on": null,
+      "options": [
+        {
+          "value": "must pass",
+          "label": "All existing tests must pass; add focused regression tests"
+        },
+        {
+          "value": "partial: preserve critical suites",
+          "label": "Critical booking, payment, auth, seat, and API suites must pass; other failures are triaged"
+        },
+        {
+          "value": "can rewrite",
+          "label": "Equivalent coverage may replace outdated tests"
+        }
+      ],
+      "allow_other": true,
+      "type": "single_select"
+    },
+    {
+      "id": "G5",
+      "kit": "generic",
+      "field": "constraints.additional",
+      "title": "Additional constraints",
+      "question": "What additional requirements, exclusions, dependencies, compliance rules, or operational constraints should govern the work?",
+      "importance": "optional",
+      "impact": 3,
+      "recommended": null,
+      "default": "None beyond the decisions listed in this specification.",
+      "prefilled": true,
+      "prefilled_value": "Preserve the current React + Express + Spring Boot + FastAPI + MySQL + Redis + Docker architecture; never use fake data; never expose secrets; keep optional AI/Redis/observability failures from corrupting transactional booking behavior.",
+      "answer": null,
+      "depends_on": null,
+      "type": "text",
+      "options": []
+    }
+  ]
+}

@@ -1,7 +1,6 @@
 package com.airlines.controller;
 
 import com.airlines.handlers.ResourceNotAvailableException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.airlines.dto.BookingDto;
@@ -16,8 +15,11 @@ import java.util.List;
 @RequestMapping("/booking")
 @CrossOrigin("*")
 public class BookingController {
-    @Autowired
-    private BookingService bookingService;
+    private final BookingService bookingService;
+
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @PostMapping("/add")
     public Booking addBooking(@Valid @RequestBody Booking booking) throws ResourceNotAvailableException {

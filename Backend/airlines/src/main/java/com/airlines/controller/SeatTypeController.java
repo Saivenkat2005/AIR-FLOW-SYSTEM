@@ -1,6 +1,5 @@
 package com.airlines.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.airlines.dto.SeatTypeDTO;
@@ -15,8 +14,11 @@ import java.util.List;
 @RequestMapping("/seat")
 @CrossOrigin("*")
 public class SeatTypeController {
-    @Autowired
-    private SeatTypeService seatTypeService;
+    private final SeatTypeService seatTypeService;
+
+    public SeatTypeController(SeatTypeService seatTypeService) {
+        this.seatTypeService = seatTypeService;
+    }
 
     @PostMapping("/add")
     public SeatDetails insertSeat(@Valid @RequestBody SeatDetails seatDetails) {
@@ -49,4 +51,12 @@ public class SeatTypeController {
         return seatTypeService.getSeatsByFlightId(flightId);
     }
 
+    @PostMapping("/hold/{seatId}")
+    public String holdSeat(@PathVariable("seatId") Long seatId, @RequestParam("userId") String userId) {
+        boolean success = seatTypeService.holdSeat(seatId, userId);
+        if (success) {
+            return "Seat held successfully for 5 minutes.";
+        }
+        return "Seat is already held or unavailable.";
+    }
 }

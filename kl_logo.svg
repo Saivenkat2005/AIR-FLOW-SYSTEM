@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 100" width="450" height="100">
+  <!-- Gear / Emblem -->
+  <g transform="translate(45, 50)">
+    <!-- Outer cog wheel -->
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#1A1A1A" stroke-width="6" stroke-dasharray="8 4"/>
+    <circle cx="0" cy="0" r="30" fill="#FFFFFF" stroke="#B31B1B" stroke-width="3"/>
+    <circle cx="0" cy="0" r="22" fill="#B31B1B"/>
+    <!-- Inner emblem icon / sun rays -->
+    <circle cx="0" cy="0" r="14" fill="#FFFFFF"/>
+    <path d="M-6,4 L0,-8 L6,4 Z" fill="#B31B1B"/>
+    <rect x="-8" y="4" width="16" height="3" fill="#B31B1B"/>
+  </g>
+  
+  <!-- Text "KL" -->
+  <text x="95" y="62" font-family="Calibri, Arial, sans-serif" font-size="58" font-weight="900" fill="#B31B1B" letter-spacing="-2">KL</text>
+  
+  <!-- Text "(DEEMED TO BE UNIVERSITY)" -->
+  <text x="96" y="80" font-family="Calibri, Arial, sans-serif" font-size="12" font-weight="700" fill="#222222" letter-spacing="1.5">(DEEMED TO BE UNIVERSITY)</text>
+</svg>

@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` VARCHAR(255) NOT NULL UNIQUE,
   `user_email` VARCHAR(255) NOT NULL,
   `user_phno` VARCHAR(10) NOT NULL,
+  `password` VARCHAR(255) NOT NULL DEFAULT '$2a$10$eACCYoNOHEqgkVE8aI.E7OHo7b9sN.R05vYyZkW3x3990M/6h38bK',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -65,6 +66,8 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `date` VARCHAR(255) NOT NULL,
   `nop` BIGINT NOT NULL DEFAULT 1,
   `total_price` BIGINT NOT NULL DEFAULT 0,
+  `pnr` VARCHAR(255) DEFAULT NULL,
+  `ticket_email_status` VARCHAR(255) DEFAULT 'CONFIRMED',
   PRIMARY KEY (`booking_id`),
   CONSTRAINT `fk_booking_flight` FOREIGN KEY (`flight_id`) REFERENCES `flight` (`flight_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_booking_customer` FOREIGN KEY (`customer_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
@@ -105,11 +108,11 @@ INSERT INTO `roles` (`role_id`, `authority`) VALUES
 (3, 'USER')
 ON DUPLICATE KEY UPDATE `authority`=VALUES(`authority`);
 
--- Seed Users/Passengers (Mock Database)
-INSERT INTO `users` (`user_id`, `username`, `user_email`, `user_phno`) VALUES
-(1, 'admin', 'admin@persistent.com', '9876543210'),
-(2, 'manager', 'manager@persistent.com', '9876543211'),
-(3, 'passenger', 'passenger@persistent.com', '9876543212')
+-- Seed Users/Passengers (Password for all is: password123)
+INSERT INTO `users` (`user_id`, `username`, `user_email`, `user_phno`, `password`) VALUES
+(1, 'admin', 'admin@persistent.com', '9876543210', '$2a$10$e395vcyPy9.lUdUTG1ToDubtAposd7TjOEH0PoCc17FmEZ0LdJ966'),
+(2, 'manager', 'manager@persistent.com', '9876543211', '$2a$10$e395vcyPy9.lUdUTG1ToDubtAposd7TjOEH0PoCc17FmEZ0LdJ966'),
+(3, 'passenger', 'passenger@persistent.com', '9876543212', '$2a$10$e395vcyPy9.lUdUTG1ToDubtAposd7TjOEH0PoCc17FmEZ0LdJ966')
 ON DUPLICATE KEY UPDATE `username`=VALUES(`username`);
 
 -- Seed User-Role Junction
@@ -140,7 +143,7 @@ INSERT INTO `seat_details` (`seat_id`, `flight_id`, `seat_type`, `available_seat
 ON DUPLICATE KEY UPDATE `available_seats`=VALUES(`available_seats`);
 
 -- Seed Bookings
-INSERT INTO `booking` (`booking_id`, `customer_id`, `flight_id`, `seat_type`, `origin`, `destination`, `date`, `nop`, `total_price`) VALUES
-(1, 3, 1, 'Economy', 'New York (JFK)', 'Los Angeles (LAX)', '2026-07-04', 2, 300),
-(2, 3, 2, 'Business', 'London (LHR)', 'New Delhi (DEL)', '2026-07-05', 1, 900)
+INSERT INTO `booking` (`booking_id`, `customer_id`, `flight_id`, `seat_type`, `origin`, `destination`, `date`, `nop`, `total_price`, `pnr`, `ticket_email_status`) VALUES
+(1, 3, 1, 'Economy', 'New York (JFK)', 'Los Angeles (LAX)', '2026-07-04', 2, 300, 'NEXUS101', 'SENT'),
+(2, 3, 2, 'Business', 'London (LHR)', 'New Delhi (DEL)', '2026-07-05', 1, 900, 'NEXUS202', 'SENT')
 ON DUPLICATE KEY UPDATE `total_price`=VALUES(`total_price`);

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review-II Presentation | Cloud-Native API Gateway & Service Mesh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Calibri:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #0f172a;
+      color: #1f2937;
+      font-family: Calibri, Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      min-height: 100vh;
+    }
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1100px;
+      margin-bottom: 20px;
+      background: rgba(30, 41, 59, 0.9);
+      backdrop-filter: blur(8px);
+      padding: 12px 24px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .toolbar-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #38bdf8;
+    }
+    .toolbar-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: #0369a1;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+    }
+    .btn-outline:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .slide-container {
+      width: 100%;
+      max-width: 1100px;
+      aspect-ratio: 16 / 9;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 40px 24px 40px;
+      overflow: hidden;
+    }
+    /* Slide Header */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 20px;
+    }
+    .kl-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kl-logo-img {
+      height: 38px;
+    }
+    .slide-title-wrap {
+      flex: 1;
+      text-align: center;
+    }
+    .slide-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #111827;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .slide-subtitle {
+      font-size: 14px;
+      font-weight: 700;
+      color: #b31b1b;
+      margin-top: 2px;
+    }
+    /* Slide Body */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    /* Slide Footer */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: auto;
+    }
+    /* Cards & Components */
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .title-red { color: #b31b1b; }
+    .title-navy { color: #1e3a8a; }
+    .title-blue { color: #0284c7; }
+    
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .bullet-item {
+      font-size: 19px;
+      line-height: 1.45;
+      color: #1f2937;
+      position: relative;
+      padding-left: 24px;
+    }
+    .bullet-item::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      font-weight: bold;
+      color: #b31b1b;
+      font-size: 22px;
+    }
+    .bullet-lead {
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+    .bullet-lead.red {
+      color: #b31b1b;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      height: 100%;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .grid-2x3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Table */
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+    .table-custom th {
+      background: #1e3a8a;
+      color: #ffffff;
+      padding: 8px 10px;
+      font-weight: 700;
+      text-align: left;
+    }
+    .table-custom th.th-highlight {
+      background: #b31b1b;
+    }
+    .table-custom td {
+      padding: 8px 10px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+    .table-custom tr:nth-child(even) td {
+      background: #ffffff;
+    }
+    .badge-completed {
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      float: right;
+    }
+    .stat-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 4px 0;
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+    }
+    .stat-sub {
+      font-size: 11px;
+      color: #334155;
+    }
+
+    /* Navigation dots */
+    .thumbnails-nav {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1100px;
+    }
+    .thumb-btn {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .thumb-btn:hover, .thumb-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+    .slide-page {
+      display: none;
+      height: 100%;
+      flex-direction: column;
+    }
+    .slide-page.active {
+      display: flex;
+    }
+    img.diagram-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="toolbar-title">KL University • Review-II Project Presentation Viewer</div>
+    <div class="toolbar-controls">
+      <button class="btn btn-outline" onclick="prevSlide()">❮ Prev</button>
+      <span id="slideIndicator" style="font-size: 14px; font-weight: 600; min-width: 80px; text-align: center;">Slide 1 / 12</span>
+      <button class="btn btn-outline" onclick="nextSlide()">Next ❯</button>
+      <a href="2300031764_CSE-2_Review-II.pptx" download class="btn" style="text-decoration:none;">📥 Download PPTX</a>
+    </div>
+  </div>
+
+  <div class="slide-container" id="slideContainer">
+    
+    <!-- SLIDE 1: TITLE SLIDE -->
+    <div class="slide-page active" id="slide-1">
+      <div style="text-align: center; margin-top: 10px;">
+        <h2 style="font-size: 26px; font-weight: 700; color: #111827; letter-spacing: 1px;">REVIEW-II</h2>
+        <h1 style="font-size: 28px; font-weight: 700; color: #1e3a8a; margin: 12px 0 6px;">Cloud-Native API Gateway and Service Mesh Architecture</h1>
+        <h3 style="font-size: 17px; font-weight: 600; color: #0284c7; font-style: italic;">Secure, Scalable and Observable Microservices Infrastructure</h3>
+      </div>
+      
+      <div class="grid-2" style="margin-top: 24px; flex: 1;">
+        <div class="card">
+          <div class="card-title title-red">Project Team Members</div>
+          <div style="font-size: 15px; line-height: 1.8; color: #1f2937;">
+            <div>• <strong>Bandaru Sai Venkat Ram</strong> <span style="color: #64748b;">(2300031764)</span></div>
+            <div>• <strong>Davuluri Bala Gopal</strong> <span style="color: #64748b;">(2300032878)</span></div>
+            <div>• <strong>Akaramsetty Siva Sai</strong> <span style="color: #64748b;">(2300033233)</span></div>
+            <div>• <strong>Rohid Baig</strong> <span style="color: #64748b;">(2300039146)</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title title-red">Under the Guidance Of</div>
+          <div style="font-size: 15px; line-height: 1.7; color: #1f2937;">
+            <div style="font-size: 17px; font-weight: 700; color: #111827;">Mr. BVN Prasad Paruchuri</div>
+            <div style="color: #4b5563;">Assistant Professor</div>
+            <div style="color: #4b5563;">Department of Computer Science & Engineering</div>
+            <div style="color: #0284c7; font-weight: 600; margin-top: 4px;">Program: B.Tech — Cloud Native Software Engg.</div>
+            <div style="color: #64748b;">Academic Year: 2025 – 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 14px; margin-bottom: 6px;">
+        <img src="kl_logo.svg" alt="KL Logo" style="height: 38px; display: inline-block; margin-bottom: 4px;" />
+        <div style="font-size: 13px; font-weight: 700; color: #b31b1b;">KONERU LAKSHMAIAH EDUCATION FOUNDATION</div>
+      </div>
+
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>1</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: OUTLINE -->
+    <div class="slide-page" id="slide-2">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap"><div class="slide-title">OUTLINE</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="bullet-list" style="gap: 16px;">
+              <div class="bullet-item"><strong>1. Introduction</strong></div>
+              <div class="bullet-item"><strong>2. Problem Statement and Objectives</strong></div>
+              <div class="bullet-item">
+                <strong>3. Functional & Non-Functional Requirements</strong>
+                <div style="font-size: 14px; color: #64748b; margin-top: 4px;">• Functional & Non-Functional Requirements<br>• Requirement Traceability / Acceptance Criteria</div>
+              </div>
+              <div class="bullet-item"><strong>4. Alternative Solutions & Trade-off Analysis</strong></div>
+              <div class="bullet-item">
+                <strong>5. Complete System Architecture</strong>
+                <div style="font-size: 14px; color: #64748b; margin-top: 4px;">• Architecture Diagram | • Technology Stack | • Design Rationale</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="bullet-list" style="gap: 20px;">
+              <div class="bullet-item"><strong>6. Detailed Design & Data Flow</strong></div>
+              <div class="bullet-item"><strong>7. Implementation & Unit-Level Progress</strong></div>
+              <div class="bullet-item"><strong>8. Testing & Results</strong></div>
+              <div class="bullet-item"><strong>9. Conclusion & Future Scope</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>2</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: INTRODUCTION -->
+    <div class="slide-page" id="slide-3">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap"><div class="slide-title">INTRODUCTION</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="card" style="height: 100%;">
+          <ul class="bullet-list">
+            <li class="bullet-item"><span class="bullet-lead red">Paradigm Shift to Cloud-Native:</span> Transitioning airline reservation systems from monolithic architectures to decoupled, resilient microservices.</li>
+            <li class="bullet-item"><span class="bullet-lead">Unified API Gateway Ingress:</span> Single edge gateway enforcing authentication, dynamic routing, token-bucket rate limiting, and SSL termination.</li>
+            <li class="bullet-item"><span class="bullet-lead red">Istio Service Mesh & Zero-Trust:</span> Securing east-west service communications transparently with STRICT mutual TLS (mTLS) and Envoy sidecars.</li>
+            <li class="bullet-item"><span class="bullet-lead">Traffic Governance & Resilience:</span> Enabling intelligent canary traffic shifting (90/10), circuit breaking, automated retries, and fault injection.</li>
+            <li class="bullet-item"><span class="bullet-lead red">Full-Stack Telemetry & Tracing:</span> End-to-end distributed observability leveraging Prometheus, Grafana, Loki, and Tempo for high availability.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>3</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: PROBLEM STATEMENT & OBJECTIVES -->
+    <div class="slide-page" id="slide-4">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap"><div class="slide-title">PROBLEM STATEMENT & OBJECTIVES</div></div>
+      </div>
+      <div class="slide-body" style="gap: 14px;">
+        <div class="card" style="background: #fef2f2; border-color: #fecaca; padding: 12px 18px;">
+          <div class="card-title title-red" style="font-size: 14px;">Problem Statement</div>
+          <div style="font-size: 15px; line-height: 1.5; color: #1f2937;">
+            • Monolithic airline booking systems suffer from <strong style="color: #b31b1b;">single points of failure, tight coupling</strong>, and scalability bottlenecks during traffic surges.<br>
+            • Lack of <strong style="color: #1e3a8a;">zero-trust security (mTLS)</strong> and unified observability in inter-service communications leads to cascading outages.
+          </div>
+        </div>
+
+        <div class="card" style="flex: 1; padding: 14px 18px;">
+          <div class="card-title title-navy" style="font-size: 14px;">Project Objectives (Maximum 4)</div>
+          <ul class="bullet-list" style="gap: 10px;">
+            <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead red">1. Cloud-Native API Gateway:</span> Deploy an edge gateway for intelligent routing, persona access, and rate limiting.</li>
+            <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead">2. Istio Service Mesh Security:</span> Implement strict mTLS encryption, circuit breakers, and canary traffic splitting (90/10).</li>
+            <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead red">3. Intelligent Microservices Core:</span> Engineer decoupled Spring Boot services, 3D seat mapping, and FastAPI AI assistant.</li>
+            <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead">4. Full-Stack Observability Pipeline:</span> Integrate Prometheus, Grafana, Loki, and Tempo for distributed tracing and health monitoring.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>4</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: FUNCTIONAL & NON-FUNCTIONAL REQUIREMENTS -->
+    <div class="slide-page" id="slide-5">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap"><div class="slide-title">FUNCTIONAL & NON-FUNCTIONAL REQUIREMENTS</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title title-navy">Functional Requirements</div>
+            <ul class="bullet-list" style="gap: 12px;">
+              <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead red">Multi-Persona Access:</span> Dedicated dashboards for Passenger (search/book), Manager (approvals), and Admin workflows.</li>
+              <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead">3D Interactive Seat Allocation:</span> Real-time cabin visualizer with First, Business, and Economy tiering and overbooking rebalance.</li>
+              <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead red">Conversational AI Assistant:</span> Natural language queries for flight discovery, policies, and baggage rules.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title title-red">Non-Functional & Traceability</div>
+            <ul class="bullet-list" style="gap: 12px;">
+              <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead">Zero-Trust Security:</span> 100% strict mTLS encryption with automated SPIFFE certificate rotation.</li>
+              <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead red">High Scalability & Low Latency:</span> Sub-100ms API response time with Redis caching and Kafka streaming.</li>
+              <li class="bullet-item" style="font-size: 15px;"><span class="bullet-lead">Traceability & Acceptance:</span> Zero data loss during failover; 99.9% uptime verified under load tests.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>5</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: ALTERNATIVE SOLUTIONS & TRADE-OFF ANALYSIS -->
+    <div class="slide-page" id="slide-6">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap">
+          <div class="slide-title">ALTERNATIVE SOLUTIONS & TRADE-OFF ANALYSIS</div>
+          <div class="slide-subtitle">Data Required & Architectural Trade-offs</div>
+        </div>
+      </div>
+      <div class="slide-body" style="gap: 12px;">
+        <table class="table-custom">
+          <thead>
+            <tr>
+              <th>Evaluation Dimension</th>
+              <th>Monolithic Architecture</th>
+              <th>Basic Microservices</th>
+              <th class="th-highlight">Proposed: Gateway + Istio Mesh</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Inter-Service Security</strong></td>
+              <td>Perimeter only; Plaintext inside</td>
+              <td>Custom JWT / Manual app code</td>
+              <td><strong style="color: #15803d;">Zero-Trust STRICT mTLS (Automated)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Traffic & Canary Routing</strong></td>
+              <td>All-or-nothing redeployment</td>
+              <td>Complex custom reverse proxies</td>
+              <td><strong style="color: #15803d;">Dynamic 90/10 Canary Split & Retries</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Fault Resilience</strong></td>
+              <td>Single Point of Failure (SPoF)</td>
+              <td>Hardcoded Hystrix/Resilience4j</td>
+              <td><strong style="color: #15803d;">Envoy Circuit Breakers (3-strike ejection)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Observability & Traces</strong></td>
+              <td>Siloed monolithic server logs</td>
+              <td>Fragmented log aggregation</td>
+              <td><strong style="color: #15803d;">Full Mesh Tracing (Prometheus+Tempo)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Network Latency Overhead</strong></td>
+              <td>Near zero (In-memory calls)</td>
+              <td>Low (~1-2ms HTTP hops)</td>
+              <td><strong style="color: #1e3a8a;">Negligible (&lt;3ms Envoy Proxy overhead)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card" style="background: #eff6ff; border-color: #bfdbfe; padding: 10px 16px;">
+          <div style="font-size: 14px; line-height: 1.4; color: #1e3a8a;">
+            <strong>• Trade-off Analysis Rationale:</strong> The minimal proxy latency overhead (&lt;3ms) is decisively justified by automated zero-trust security (mTLS), transparent traffic shifting (canary 90/10), and complete telemetry without modifying application code.
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>6</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: COMPLETE SYSTEM ARCHITECTURE -->
+    <div class="slide-page" id="slide-7">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap">
+          <div class="slide-title">COMPLETE SYSTEM ARCHITECTURE</div>
+          <div class="slide-subtitle">Architecture Diagram, Technology Stack & Design Rationale</div>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div style="display: flex; gap: 16px; height: 100%;">
+          <div style="flex: 1.8; display: flex; align-items: center; justify-content: center; background: #0f172a; border-radius: 8px; padding: 8px;">
+            <img src="architecture_diagram.svg" class="diagram-img" alt="Architecture Diagram" />
+          </div>
+          <div class="card" style="flex: 1;">
+            <div class="card-title title-red" style="font-size: 14px;">Core Tech Stack</div>
+            <ul class="bullet-list" style="gap: 8px;">
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">Frontend:</span> React 18, Vite, Three.js, Tailwind</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">Backend & AI:</span> Spring Boot 3.1, Java 21, FastAPI</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">Gateway & Mesh:</span> Istio 1.20, Envoy, Node.js Gateway</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">Analytical Tools:</span> Prometheus, Grafana, Loki, Tempo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>7</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: DETAILED DESIGN & DATA FLOW -->
+    <div class="slide-page" id="slide-8">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap">
+          <div class="slide-title">DETAILED DESIGN & DATA FLOW</div>
+          <div class="slide-subtitle">End-to-End Traffic Routing & Inter-Service Flow</div>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div style="display: flex; gap: 16px; height: 100%;">
+          <div style="flex: 1.8; display: flex; align-items: center; justify-content: center; background: #0b1120; border-radius: 8px; padding: 8px;">
+            <img src="dataflow_diagram.svg" class="diagram-img" alt="Data Flow Diagram" />
+          </div>
+          <div class="card" style="flex: 1;">
+            <div class="card-title title-navy" style="font-size: 14px;">Data Flow Pipeline</div>
+            <ul class="bullet-list" style="gap: 8px;">
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">1. Ingress Routing:</span> Istio Gateway routes HTTPS to API Gateway (Port 4000).</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">2. Strict mTLS Mesh:</span> Sidecars encrypt East-West calls with SPIFFE certificates.</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">3. Canary Release:</span> VirtualService splits 90% traffic to v1 and 10% to v2.</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">4. Event Streaming:</span> Kafka asynchronously notifies passengers on booking events.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>8</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: IMPLEMENTATION & UNIT-LEVEL PROGRESS -->
+    <div class="slide-page" id="slide-9">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap">
+          <div class="slide-title">IMPLEMENTATION & UNIT-LEVEL PROGRESS</div>
+          <div class="slide-subtitle">Module-wise Deliverables & Completion Status</div>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2x3">
+          <div class="card">
+            <span class="badge-completed">100% Completed</span>
+            <div style="font-size: 14px; font-weight: 700; color: #1e3a8a;">API Gateway & Ingress Layer</div>
+            <div style="font-size: 11px; font-weight: 700; color: #b31b1b; margin: 2px 0;">Node.js Express / Istio Ingress</div>
+            <div style="font-size: 12px; color: #4b5563;">Reverse proxy routing, persona header forwarding, token-bucket rate limiter, and health check endpoints.</div>
+          </div>
+          <div class="card">
+            <span class="badge-completed">100% Completed</span>
+            <div style="font-size: 14px; font-weight: 700; color: #1e3a8a;">Core Airlines Microservice</div>
+            <div style="font-size: 11px; font-weight: 700; color: #b31b1b; margin: 2px 0;">Java 21 / Spring Boot 3.1.5</div>
+            <div style="font-size: 12px; color: #4b5563;">Flight catalog CRUD, dynamic 3D seat capacity engine, and overbooking rebalance resolution.</div>
+          </div>
+          <div class="card">
+            <span class="badge-completed">100% Completed</span>
+            <div style="font-size: 14px; font-weight: 700; color: #1e3a8a;">Istio Service Mesh & Security</div>
+            <div style="font-size: 11px; font-weight: 700; color: #b31b1b; margin: 2px 0;">Istio 1.20 / Envoy / mTLS</div>
+            <div style="font-size: 12px; color: #4b5563;">STRICT mTLS encryption, 90/10 canary traffic routing, and DestinationRule circuit breakers.</div>
+          </div>
+          <div class="card">
+            <span class="badge-completed">100% Completed</span>
+            <div style="font-size: 14px; font-weight: 700; color: #1e3a8a;">AI Flight Assistant Service</div>
+            <div style="font-size: 11px; font-weight: 700; color: #b31b1b; margin: 2px 0;">Python 3.11 / FastAPI / Uvicorn</div>
+            <div style="font-size: 12px; color: #4b5563;">NLP flight discovery query parser, baggage policy assistant, and smart upgrade recommendations.</div>
+          </div>
+          <div class="card">
+            <span class="badge-completed">100% Completed</span>
+            <div style="font-size: 14px; font-weight: 700; color: #1e3a8a;">Interactive Frontend & 3D Map</div>
+            <div style="font-size: 11px; font-weight: 700; color: #b31b1b; margin: 2px 0;">React 18 / Vite / Three.js</div>
+            <div style="font-size: 12px; color: #4b5563;">Multi-persona role switcher, real-time 3D airplane seat selector, and live booking management.</div>
+          </div>
+          <div class="card">
+            <span class="badge-completed">100% Completed</span>
+            <div style="font-size: 14px; font-weight: 700; color: #1e3a8a;">Observability & Monitoring</div>
+            <div style="font-size: 11px; font-weight: 700; color: #b31b1b; margin: 2px 0;">Prometheus / Grafana / Tempo</div>
+            <div style="font-size: 12px; color: #4b5563;">Live telemetry dashboards, P99 latency tracking, distributed tracing, and Docker orchestration.</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>9</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: TESTING & RESULTS -->
+    <div class="slide-page" id="slide-10">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap">
+          <div class="slide-title">TESTING& RESULTS</div>
+          <div class="slide-subtitle">Validation, Stress Testing & Performance Metrics</div>
+        </div>
+      </div>
+      <div class="slide-body" style="gap: 12px;">
+        <div class="grid-3">
+          <div class="stat-card">
+            <div class="stat-label">AVERAGE LATENCY</div>
+            <div class="stat-val" style="color: #15803d;">42 ms</div>
+            <div class="stat-sub">Sub-10ms Redis / 88ms DB</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">TEST CODE COVERAGE</div>
+            <div class="stat-val" style="color: #1e3a8a;">92.4%</div>
+            <div class="stat-sub">JUnit 5 & Mockito Suites</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">LOAD THROUGHPUT</div>
+            <div class="stat-val" style="color: #b31b1b;">250+ RPS</div>
+            <div class="stat-sub">0.00% Error Rate (Locust)</div>
+          </div>
+        </div>
+
+        <div class="card" style="flex: 1;">
+          <div class="card-title title-navy" style="font-size: 14px;">Service Mesh Resilience & Verification Results</div>
+          <ul class="bullet-list" style="gap: 10px;">
+            <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">Canary Traffic Split Verification:</span> Validated exact 90/10 weight routing between v1 and v2 deployments with zero packet drops.</li>
+            <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">Circuit Breaker Ejection:</span> Envoy automatically ejected pods after 3 consecutive 5xx errors (30s cooldown), stopping cascading failure.</li>
+            <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">Zero-Trust Strict mTLS Enforcement:</span> 100% of inter-service traffic encrypted; unauthorized non-mesh connections rejected with HTTP 403.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>10</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: CONCLUSION & FUTURE SCOPE -->
+    <div class="slide-page" id="slide-11">
+      <div class="slide-header">
+        <div class="kl-logo"><img src="kl_logo.svg" class="kl-logo-img" alt="KL" /></div>
+        <div class="slide-title-wrap"><div class="slide-title">CONCLUSION& FUTURE SCOPE</div></div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title title-navy">Conclusion</div>
+            <ul class="bullet-list" style="gap: 12px;">
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">Robust Cloud-Native Core:</span> Successfully engineered an enterprise API Gateway and Istio Service Mesh platform.</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">Zero-Trust & High Availability:</span> Eliminated single points of failure with automated mTLS and circuit breakers.</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">Intelligent Integration:</span> Seamlessly combined 3D cabin graphics, Spring Boot microservices, and FastAPI AI.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title title-red">Future Scope</div>
+            <ul class="bullet-list" style="gap: 12px;">
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">Multi-Cluster Mesh Federation:</span> Extending Istio service mesh across hybrid multi-cloud clusters (AWS EKS & GCP GKE).</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead red">Dynamic Policy Enforcement:</span> Integrating Open Policy Agent (OPA) for fine-grained attribute-based access control.</li>
+              <li class="bullet-item" style="font-size: 14px;"><span class="bullet-lead">AI-Driven Autoscaling (KEDA):</span> Predictive workload autoscaling using real-time Prometheus traffic metrics.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>11</div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: THANK YOU -->
+    <div class="slide-page" id="slide-12">
+      <div style="text-align: center; margin-top: 40px;">
+        <img src="kl_logo.svg" alt="KL Logo" style="height: 48px; margin-bottom: 12px;" />
+        <h1 style="font-size: 42px; font-weight: 700; color: #111827;">THANK YOU</h1>
+        <h2 style="font-size: 20px; font-weight: 700; color: #1e3a8a; margin: 12px 0 6px;">Cloud-Native API Gateway and Service Mesh Architecture</h2>
+        <h3 style="font-size: 16px; font-weight: 600; color: #b31b1b; font-style: italic;">Questions & Answers / Discussion</h3>
+      </div>
+
+      <div class="card" style="max-width: 680px; margin: 24px auto 0; text-align: center; padding: 14px;">
+        <div style="font-size: 14px; font-weight: 700; color: #1f2937; line-height: 1.6;">
+          Bandaru Sai Venkat Ram (2300031764) &nbsp;|&nbsp; Davuluri Bala Gopal (2300032878)<br>
+          Akaramsetty Siva Sai (2300033233) &nbsp;|&nbsp; Rohid Baig (2300039146)
+        </div>
+        <div style="font-size: 12px; color: #64748b; margin-top: 6px;">
+          Department of Computer Science & Engineering • KL University
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <div>21-09-2026</div>
+        <div>Review-II</div>
+        <div>Department of CSE-2</div>
+        <div>12</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="thumbnails-nav" id="thumbnailsNav"></div>
+
+  <script>
+    const totalSlides = 12;
+    let currentSlide = 1;
+
+    function renderThumbs() {
+      const nav = document.getElementById('thumbnailsNav');
+      nav.innerHTML = '';
+      const slideTitles = [
+        '1. Title', '2. Outline', '3. Intro', '4. Objectives', '5. Requirements',
+        '6. Trade-offs', '7. Architecture', '8. Data Flow', '9. Implementation',
+        '10. Testing', '11. Conclusion', '12. Thank You'
+      ];
+      for (let i = 1; i <= totalSlides; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'thumb-btn' + (i === currentSlide ? ' active' : '');
+        btn.textContent = slideTitles[i - 1];
+        btn.onclick = () => goToSlide(i);
+        nav.appendChild(btn);
+      }
+    }
+
+    function updateView() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const el = document.getElementById('slide-' + i);
+        if (el) el.classList.toggle('active', i === currentSlide);
+      }
+      document.getElementById('slideIndicator').textContent = `Slide ${currentSlide} / ${totalSlides}`;
+      renderThumbs();
+    }
+
+    function goToSlide(n) {
+      if (n >= 1 && n <= totalSlides) {
+        currentSlide = n;
+        updateView();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateView();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+    });
+
+    renderThumbs();
+  </script>
+</body>
+</html>

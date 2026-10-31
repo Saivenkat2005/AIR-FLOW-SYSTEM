@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIRLINE NEXUS // Supersonic Aero Platform</title>
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/b1314443e183d1cdd77049077c46facc?family=Orbitron-Medium" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cyan: #00F0FF;
+      --blue: #38BDF8;
+      --indigo: #6366F1;
+      --violet: #8B5CF6;
+      --magenta: #EC4899;
+      --gold: #F59E0B;
+      --emerald: #10B981;
+      --cream: #F8FAFC;
+      --muted: rgba(248, 250, 252, 0.78);
+      --label: rgba(0, 240, 255, 0.75);
+      --card: rgba(8, 17, 31, 0.65);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: #030712;
+      color: var(--cream);
+      overflow-x: hidden;
+      font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+      min-height: 100%;
+    }
+
+    h1, h2, h3, .heading-font {
+      font-family: 'Orbitron-Medium', 'Orbitron', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    /* Full-viewport Cinematic Hero */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      background: #030712;
+    }
+
+    /* 1. Base Hero Image Layer (Day/Golden Sunset Flight) */
+    .hero-base-img {
+      position: absolute;
+      inset: -4%;
+      z-index: 1;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: brightness(1.12) contrast(1.15) saturate(1.35);
+      animation: kenBurnsSmooth 20s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes kenBurnsSmooth {
+      0% { transform: scale(1.02) translate3d(0, 0, 0); }
+      100% { transform: scale(1.10) translate3d(-1%, -1%, 0); }
+    }
+
+    /* 2. Reveal Hero Image Layer (Night Neon Runway Spotlight) */
+    .hero-reveal-img {
+      position: absolute;
+      inset: -4%;
+      z-index: 2;
+      pointer-events: none;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      filter: brightness(1.20) contrast(1.20) saturate(1.40);
+      -webkit-mask-image: radial-gradient(circle 0px at -999px -999px, #fff, transparent);
+      mask-image: radial-gradient(circle 0px at -999px -999px, #fff, transparent);
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      animation: kenBurnsSmooth2 24s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes kenBurnsSmooth2 {
+      0% { transform: scale(1.10) translate3d(1%, 1%, 0); }
+      100% { transform: scale(1.02) translate3d(0, 0, 0); }
+    }
+
+    /* Cinematic Translucent Shimmer Overlay */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background:
+        linear-gradient(90deg, rgba(3, 7, 18, 0.48) 0%, rgba(3, 7, 18, 0.15) 50%, rgba(3, 7, 18, 0.48) 100%),
+        linear-gradient(180deg, rgba(3, 7, 18, 0.35) 0%, rgba(3, 7, 18, 0.05) 40%, rgba(3, 7, 18, 0.65) 100%),
+        radial-gradient(circle at 20% 20%, rgba(0, 240, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* 3. Hero UI Grid */
+    .hero-ui {
+      position: absolute;
+      inset: 0;
+      z-index: 8;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: auto 1fr auto;
+      padding: 40px 50px;
+      pointer-events: none;
+    }
+
+    /* A) Hero Left */
+    .hero-left {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 28px;
+      min-width: 0;
+    }
+
+    /* Hero Brand Badge */
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      color: var(--cyan);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+      pointer-events: auto;
+    }
+
+    /* Hero Copy */
+    .hero-copy {
+      max-width: 580px;
+      padding-right: 32px;
+      pointer-events: auto;
+    }
+
+    .hero-copy h1 {
+      font-size: clamp(2rem, 4.2vw, 3.8rem);
+      line-height: 1.04;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.35);
+      background: linear-gradient(135deg, #FFFFFF 0%, #38BDF8 60%, #00F0FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-copy p {
+      margin-top: 18px;
+      max-width: 440px;
+      font-size: 14.5px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--muted);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Icon Row */
+    .icon-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      pointer-events: auto;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      background: rgba(8, 17, 31, 0.6);
+      backdrop-filter: blur(12px);
+      color: var(--cyan);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .icon-btn:hover {
+      background: rgba(0, 240, 255, 0.25);
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+    }
+
+    /* Product / Aircraft Card */
+    .product-card {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.45) 100%);
+      backdrop-filter: blur(24px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 30px rgba(0, 240, 255, 0.15);
+      pointer-events: auto;
+      max-width: 540px;
+      transition: all 0.35s ease;
+    }
+
+    .product-card:hover {
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(0, 240, 255, 0.3);
+    }
+
+    .product-thumb {
+      width: 100px;
+      height: 75px;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .product-body h2 {
+      font-size: 13px;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+    }
+
+    .product-body p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .cart-btn {
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0284C7 0%, #00F0FF 100%);
+      color: #030712;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 240, 255, 0.5);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cart-btn:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 30px rgba(0, 240, 255, 0.8), 0 0 40px rgba(139, 92, 246, 0.4);
+      color: #000000;
+    }
+
+    /* Right Specs / Aircraft Metrics Panel */
+    .specs {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: end;
+      align-self: center;
+      width: 280px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.70) 0%, rgba(15, 23, 42, 0.40) 100%);
+      backdrop-filter: blur(24px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+      pointer-events: auto;
+    }
+
+    .specs h3 {
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 12.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .spec-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .spec-value {
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      color: #38BDF8;
+    }
+
+    /* Page Tag Indicator */
+    .hero-page {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      font-family: 'Orbitron', monospace;
+      font-size: 13px;
+      color: var(--cyan);
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    @media (max-width: 900px) {
+      .hero-ui {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+      .specs {
+        display: none;
+      }
+      .hero-copy h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <!-- BASE hero image (Golden Sunset Cloud Surfing Jet) -->
+    <div
+      class="hero-base-img"
+      style="background-image: url('https://images.unsplash.com/photo-1542296332-2e4473faf563?q=80&w=2560&auto=format&fit=crop');"
+    ></div>
+
+    <!-- REVEAL hero image (Night Neon Runway Spotlight) -->
+    <div
+      class="hero-reveal-img"
+      id="reveal-img"
+      style="background-image: url('https://images.unsplash.com/photo-1506015391300-4802dc74de2e?q=80&w=2560&auto=format&fit=crop');"
+    ></div>
+
+    <!-- Shimmering Atmospheric Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- UI Overlay -->
+    <div class="hero-ui">
+      <!-- Left Column -->
+      <div class="hero-left">
+        <div>
+          <div class="brand-badge">
+            <span>✈ AIRLINE NEXUS 2.0</span>
+          </div>
+
+          <div class="hero-copy" style="margin-top: 18px;">
+            <h1>
+              <span>SUPERSONIC //</span><br />
+              <span>GLOBAL AIRWAYS</span>
+            </h1>
+            <p>
+              Experience the next era of intelligent flight booking with 3D spatial cabin seat selection, AI travel assistant, and real-time route optimization.
+            </p>
+            <div class="icon-row">
+              <button class="icon-btn" title="Aviation Radar" onclick="window.location.href='http://localhost:3002/'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </button>
+              <button class="icon-btn" title="Global Routes" onclick="window.location.href='http://localhost:3002/'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/>
+                </svg>
+              </button>
+              <button class="icon-btn" title="3D Cabin Booking" onclick="window.location.href='http://localhost:3002/'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <article class="product-card">
+          <div
+            class="product-thumb"
+            aria-hidden="true"
+            style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2560&auto=format&fit=crop');"
+          ></div>
+          <div class="product-body">
+            <h2>BOEING 777 // FLEET</h2>
+            <p>High-altitude luxury flight with live 3D seat mapping.</p>
+          </div>
+          <a href="http://localhost:3002/" class="cart-btn">
+            Book Flight
+          </a>
+        </article>
+      </div>
+
+      <!-- Page Indicator -->
+      <div class="hero-page">NX-2026 // LIVE</div>
+
+      <!-- Specs Section -->
+      <div class="specs">
+        <h3>Aero Specs</h3>
+        <div class="spec-row">
+          <span class="spec-label">Cruise Speed</span>
+          <span class="spec-value">Mach 0.86</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Range</span>
+          <span class="spec-value">13,650 km</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Cabin Class</span>
+          <span class="spec-value" style="color: #00F0FF;">3D Spatial</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">AI Route</span>
+          <span class="spec-value" style="color: #10B981;">Optimal</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const revealImg = document.getElementById('reveal-img');
+
+      function updateSpotlight(clientX, clientY) {
+        if (!revealImg) return;
+        const rect = revealImg.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        let r = 280;
+        if (window.innerWidth < 480) {
+          r = 140;
+        } else if (window.innerWidth < 720) {
+          r = 180;
+        }
+
+        const maskGradient = `radial-gradient(circle ${r}px at ${x}px ${y}px, #fff 0%, #fff 40%, rgba(255,255,255,0.75) 60%, rgba(255,255,255,0.4) 75%, rgba(255,255,255,0.12) 88%, transparent 100%)`;
+        revealImg.style.webkitMaskImage = maskGradient;
+        revealImg.style.maskImage = maskGradient;
+      }
+
+      window.addEventListener('mousemove', (e) => {
+        updateSpotlight(e.clientX, e.clientY);
+      });
+
+      window.addEventListener(
+        'touchmove',
+        (e) => {
+          if (e.touches && e.touches.length > 0) {
+            updateSpotlight(e.touches[0].clientX, e.touches[0].clientY);
+          }
+        },
+        { passive: true }
+      );
+    })();
+  </script>
+</body>
+</html>

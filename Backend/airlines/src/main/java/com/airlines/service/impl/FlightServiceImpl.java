@@ -5,7 +5,6 @@ import com.airlines.repository.FlightRepository;
 import com.airlines.repository.SeatDetailsRepository;
 import com.airlines.service.FlightService;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.airlines.entity.Flight;
@@ -14,20 +13,25 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@SuppressWarnings("null")
 public class FlightServiceImpl implements FlightService {
 
-    @Autowired
-    private FlightRepository flightRepository;
+    private final FlightRepository flightRepository;
+    private final SeatDetailsRepository seatDetailsRepository;
+    private final BookingRepository bookingRepository;
 
-    @Autowired
-    private SeatDetailsRepository seatDetailsRepository;
-
-    @Autowired
-    private BookingRepository bookingRepository;
+    public FlightServiceImpl(
+            FlightRepository flightRepository,
+            SeatDetailsRepository seatDetailsRepository,
+            BookingRepository bookingRepository) {
+        this.flightRepository = flightRepository;
+        this.seatDetailsRepository = seatDetailsRepository;
+        this.bookingRepository = bookingRepository;
+    }
 
     @Override
     public Flight insertFlight(Flight flight) {
-        return flightRepository.save(flight);
+        return flightRepository.save(java.util.Objects.requireNonNull(flight));
     }
 
     @Override
@@ -37,7 +41,7 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public Flight getFlightById(Long flightId) {
-        return flightRepository.findById(flightId).get();
+        return flightRepository.findById(java.util.Objects.requireNonNull(flightId)).get();
     }
 
     @Transactional
@@ -45,12 +49,12 @@ public class FlightServiceImpl implements FlightService {
     public void deleteFlightById(Long flightId) {
         bookingRepository.deleteAllBookingsByFlightId(flightId);
         seatDetailsRepository.deleteAllSeatsByFlightId(flightId);
-        flightRepository.deleteById(flightId);
+        flightRepository.deleteById(java.util.Objects.requireNonNull(flightId));
     }
 
     @Override
     public Flight updateFlightById(Flight flight, Long flightId) {
-        Flight flightDB = flightRepository.findById(flightId).get();
+        Flight flightDB = flightRepository.findById(java.util.Objects.requireNonNull(flightId)).get();
         if (Objects.nonNull(flight.getFlightName()) && !"".equalsIgnoreCase(flight.getFlightName()))
             flightDB.setFlightName(flight.getFlightName());
         if (Objects.nonNull(flight.getTakeOffTime()) && !"".equalsIgnoreCase(flight.getTakeOffTime()))
@@ -67,7 +71,7 @@ public class FlightServiceImpl implements FlightService {
             flightDB.setStatus(flight.getStatus());
         if (Objects.nonNull(flight.getTotalCapacity()))
             flightDB.setTotalCapacity(flight.getTotalCapacity());
-        return flightRepository.save(flightDB);
+        return flightRepository.save(java.util.Objects.requireNonNull(flightDB));
     }
 
 }

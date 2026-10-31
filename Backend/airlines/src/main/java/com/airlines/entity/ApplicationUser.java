@@ -34,6 +34,8 @@ public class ApplicationUser {
     @Size(max=10,min=10)
     private String userPhno;
 
+    private String password;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role_junction", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
             @JoinColumn(name = "role_id") })
@@ -92,5 +94,13 @@ public class ApplicationUser {
 
     public void setUserPhno(String userPhno) {
         this.userPhno = userPhno;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

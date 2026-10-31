@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+
+# Build and dependency output
+**/target/
+**/node_modules/
+Frontend/build/
+Frontend/playwright-report/
+Frontend/test-results/
+__pycache__/
+*.pyc
+
+# IDE and local tooling
+.vscode/*
+!.vscode/extensions.json
+
+# Orkestra AI — estado local (nunca versionar)
+.sta/

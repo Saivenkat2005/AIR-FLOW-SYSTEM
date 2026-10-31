@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650" width="1200" height="650">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="meshGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1200" height="650" rx="16" fill="url(#bgGrad)"/>
+
+  <!-- Title Header -->
+  <text x="600" y="45" font-family="Calibri, Arial, sans-serif" font-size="24" font-weight="bold" fill="#38bdf8" text-anchor="middle" letter-spacing="1">CLOUD-NATIVE ARCHITECTURE &amp; SERVICE MESH TOPOLOGY</text>
+
+  <!-- CLIENT TIER -->
+  <g transform="translate(40, 80)" filter="url(#shadow)">
+    <rect width="200" height="520" rx="12" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+    <rect width="200" height="40" rx="12" fill="#0284c7"/>
+    <text x="100" y="26" font-family="Calibri, Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">CLIENT TIER</text>
+    
+    <!-- React App Box -->
+    <rect x="15" y="60" width="170" height="130" rx="8" fill="#0f172a" stroke="#0284c7" stroke-width="1.5"/>
+    <text x="100" y="88" font-family="Calibri, Arial, sans-serif" font-size="15" font-weight="bold" fill="#38bdf8" text-anchor="middle">React 18 SPA</text>
+    <text x="100" y="112" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Vite + Tailwind CSS</text>
+    <text x="100" y="132" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">Persona Switcher</text>
+    <text x="100" y="152" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="middle">3D WebGL Seat Map</text>
+    <text x="100" y="172" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#34d399" text-anchor="middle">AI Chat Assistant UI</text>
+
+    <!-- Client Personas -->
+    <rect x="15" y="210" width="170" height="280" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="100" y="235" font-family="Calibri, Arial, sans-serif" font-size="14" font-weight="bold" fill="#f8fafc" text-anchor="middle">User Personas</text>
+    
+    <rect x="25" y="250" width="150" height="60" rx="6" fill="#1e293b"/>
+    <text x="100" y="274" font-family="Calibri, Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa" text-anchor="middle">Passenger</text>
+    <text x="100" y="294" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">Search, 3D Book, Pay</text>
+
+    <rect x="25" y="325" width="150" height="60" rx="6" fill="#1e293b"/>
+    <text x="100" y="349" font-family="Calibri, Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">Flight Manager</text>
+    <text x="100" y="369" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">Review &amp; Approve</text>
+
+    <rect x="25" y="400" width="150" height="60" rx="6" fill="#1e293b"/>
+    <text x="100" y="424" font-family="Calibri, Arial, sans-serif" font-size="13" font-weight="bold" fill="#f87171" text-anchor="middle">System Admin</text>
+    <text x="100" y="444" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#cbd5e1" text-anchor="middle">Fleet &amp; Mesh Control</text>
+  </g>
+
+  <!-- ARROW 1: HTTPS -->
+  <g transform="translate(245, 330)">
+    <line x1="0" y1="0" x2="45" y2="0" stroke="#38bdf8" stroke-width="3" stroke-dasharray="4 2"/>
+    <polygon points="45,0 35,-6 35,6" fill="#38bdf8"/>
+    <text x="22" y="-10" font-family="Calibri, Arial, sans-serif" font-size="11" font-weight="bold" fill="#38bdf8" text-anchor="middle">HTTPS</text>
+  </g>
+
+  <!-- INGRESS & GATEWAY TIER -->
+  <g transform="translate(300, 80)" filter="url(#shadow)">
+    <rect width="210" height="520" rx="12" fill="#1e293b" stroke="#818cf8" stroke-width="2"/>
+    <rect width="210" height="40" rx="12" fill="#4f46e5"/>
+    <text x="105" y="26" font-family="Calibri, Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">INGRESS &amp; GATEWAY</text>
+
+    <!-- Istio Ingress Gateway -->
+    <rect x="15" y="60" width="180" height="190" rx="8" fill="#0f172a" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="105" y="90" font-family="Calibri, Arial, sans-serif" font-size="15" font-weight="bold" fill="#a5b4fc" text-anchor="middle">Istio Ingress Gateway</text>
+    <text x="105" y="112" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle">Port 80 / 443 (TLS Edge)</text>
+    <line x1="30" y1="122" x2="180" y2="122" stroke="#334155" stroke-width="1"/>
+    <text x="105" y="142" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">• VirtualService Routing</text>
+    <text x="105" y="162" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">• TLS Termination</text>
+    <text x="105" y="182" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">• Rate Limiter (Token Bucket)</text>
+    <text x="105" y="202" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#93c5fd" text-anchor="middle">• Request Filtering &amp; Auth</text>
+    <text x="105" y="222" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#34d399" text-anchor="middle">Canary Split (90/10)</text>
+
+    <!-- API Gateway Proxy -->
+    <rect x="15" y="270" width="180" height="220" rx="8" fill="#0f172a" stroke="#4f46e5" stroke-width="1.5"/>
+    <text x="105" y="300" font-family="Calibri, Arial, sans-serif" font-size="15" font-weight="bold" fill="#818cf8" text-anchor="middle">Node.js API Gateway</text>
+    <text x="105" y="322" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle">Port 4000 (Express/Nexus)</text>
+    <line x1="30" y1="332" x2="180" y2="332" stroke="#334155" stroke-width="1"/>
+    <text x="105" y="354" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle">• Reverse Proxy Engine</text>
+    <text x="105" y="374" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle">• Payload Sanitization</text>
+    <text x="105" y="394" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle">• Header Forwarding</text>
+    <text x="105" y="414" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle">• Circuit Breaker Hooks</text>
+    <text x="105" y="434" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1" text-anchor="middle">• Health Check Handlers</text>
+    <text x="105" y="454" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#38bdf8" text-anchor="middle">• OpenTelemetry Tracer</text>
+  </g>
+
+  <!-- ARROW 2: mTLS MESH -->
+  <g transform="translate(515, 330)">
+    <line x1="0" y1="0" x2="45" y2="0" stroke="#a855f7" stroke-width="3" stroke-dasharray="4 2"/>
+    <polygon points="45,0 35,-6 35,6" fill="#a855f7"/>
+    <text x="22" y="-10" font-family="Calibri, Arial, sans-serif" font-size="11" font-weight="bold" fill="#c084fc" text-anchor="middle">mTLS</text>
+  </g>
+
+  <!-- SERVICE MESH CLUSTER -->
+  <g transform="translate(570, 80)" filter="url(#shadow)">
+    <rect width="360" height="520" rx="12" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+    <rect width="360" height="40" rx="12" fill="#7e22ce"/>
+    <text x="180" y="26" font-family="Calibri, Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">ISTIO SERVICE MESH (STRICT mTLS)</text>
+
+    <!-- Core Service v1 (Stable 90%) -->
+    <rect x="15" y="55" width="330" height="120" rx="8" fill="#0f172a" stroke="#22c55e" stroke-width="1.5"/>
+    <rect x="235" y="65" width="95" height="22" rx="4" fill="#15803d"/>
+    <text x="282" y="80" font-family="Calibri, Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">STABLE (90%)</text>
+    <text x="30" y="82" font-family="Calibri, Arial, sans-serif" font-size="15" font-weight="bold" fill="#4ade80">Core Airline Service v1</text>
+    <text x="30" y="102" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1">Java 21 | Spring Boot 3.1.5 | Port 8080</text>
+    <text x="30" y="122" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#94a3b8">• Flight CRUD • Dynamic 3D Seats • Check-in Rebalance</text>
+    <text x="30" y="142" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#a855f7">• Envoy Sidecar Proxy (mTLS STRICT, Port 15001)</text>
+
+    <!-- Core Service v2 (Canary 10%) -->
+    <rect x="15" y="185" width="330" height="95" rx="8" fill="#0f172a" stroke="#eab308" stroke-width="1.5"/>
+    <rect x="235" y="195" width="95" height="22" rx="4" fill="#a16207"/>
+    <text x="282" y="210" font-family="Calibri, Arial, sans-serif" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">CANARY (10%)</text>
+    <text x="30" y="212" font-family="Calibri, Arial, sans-serif" font-size="15" font-weight="bold" fill="#facc15">Core Airline Service v2</text>
+    <text x="30" y="232" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1">Fault Injection Test • 500ms Delay Resilience</text>
+    <text x="30" y="252" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#a855f7">• Envoy Sidecar (DestinationRule Circuit Breaker)</text>
+
+    <!-- AI FastAPI Microservice -->
+    <rect x="15" y="290" width="330" height="100" rx="8" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5"/>
+    <text x="30" y="315" font-family="Calibri, Arial, sans-serif" font-size="15" font-weight="bold" fill="#22d3ee">AI Assistant Service</text>
+    <text x="30" y="335" font-family="Calibri, Arial, sans-serif" font-size="12" fill="#cbd5e1">Python 3.11 | FastAPI | Port 8000</text>
+    <text x="30" y="355" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#94a3b8">• NLP Query Parser • Baggage &amp; Policy Recommendations</text>
+    <text x="30" y="375" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#a855f7">• Envoy Proxy (2 Retries, 3s Timeout)</text>
+
+    <!-- Aux Microservices (Pending extraction) -->
+    <rect x="15" y="400" width="330" height="105" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1.5"/>
+    <text x="30" y="425" font-family="Calibri, Arial, sans-serif" font-size="14" font-weight="bold" fill="#94a3b8">Auxiliary Microservices</text>
+    <text x="30" y="445" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#cbd5e1">• Notification Service (Kafka Consumer / Email-SMS)</text>
+    <text x="30" y="465" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#cbd5e1">• Payment &amp; Media Services (Cloud CDN integration)</text>
+    <text x="30" y="485" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#a855f7">• PeerAuthentication: STRICT mTLS Enforced</text>
+  </g>
+
+  <!-- ARROW 3: DATA FLOW -->
+  <g transform="translate(935, 330)">
+    <line x1="0" y1="0" x2="45" y2="0" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4 2"/>
+    <polygon points="45,0 35,-6 35,6" fill="#f59e0b"/>
+    <text x="22" y="-10" font-family="Calibri, Arial, sans-serif" font-size="11" font-weight="bold" fill="#fbbf24" text-anchor="middle">Data/Events</text>
+  </g>
+
+  <!-- DATA & OBSERVABILITY TIER -->
+  <g transform="translate(990, 80)" filter="url(#shadow)">
+    <rect width="170" height="520" rx="12" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <rect width="170" height="40" rx="12" fill="#d97706"/>
+    <text x="85" y="26" font-family="Calibri, Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">DATA &amp; TELEMETRY</text>
+
+    <!-- MySQL DB -->
+    <rect x="12" y="55" width="146" height="75" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="85" y="78" font-family="Calibri, Arial, sans-serif" font-size="13" font-weight="bold" fill="#fbbf24" text-anchor="middle">MySQL 8.0</text>
+    <text x="85" y="96" font-family="Calibri, Arial, sans-serif" font-size="10" fill="#cbd5e1" text-anchor="middle">Relational Database</text>
+    <text x="85" y="112" font-family="Calibri, Arial, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Port 3306 (Docker)</text>
+
+    <!-- Redis Cache -->
+    <rect x="12" y="140" width="146" height="75" rx="6" fill="#0f172a" stroke="#ef4444" stroke-width="1"/>
+    <text x="85" y="163" font-family="Calibri, Arial, sans-serif" font-size="13" font-weight="bold" fill="#f87171" text-anchor="middle">Redis 7</text>
+    <text x="85" y="181" font-family="Calibri, Arial, sans-serif" font-size="10" fill="#cbd5e1" text-anchor="middle">In-Memory Cache</text>
+    <text x="85" y="197" font-family="Calibri, Arial, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Sub-10ms Queries</text>
+
+    <!-- Kafka Event Stream -->
+    <rect x="12" y="225" width="146" height="75" rx="6" fill="#0f172a" stroke="#ec4899" stroke-width="1"/>
+    <text x="85" y="248" font-family="Calibri, Arial, sans-serif" font-size="13" font-weight="bold" fill="#f472b6" text-anchor="middle">Apache Kafka</text>
+    <text x="85" y="266" font-family="Calibri, Arial, sans-serif" font-size="10" fill="#cbd5e1" text-anchor="middle">Event Streaming</text>
+    <text x="85" y="282" font-family="Calibri, Arial, sans-serif" font-size="10" fill="#94a3b8" text-anchor="middle">Booking Events</text>
+
+    <!-- Observability Suite -->
+    <rect x="12" y="310" width="146" height="195" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+    <text x="85" y="333" font-family="Calibri, Arial, sans-serif" font-size="13" font-weight="bold" fill="#38bdf8" text-anchor="middle">Observability</text>
+    <line x1="20" y1="343" x2="150" y2="343" stroke="#334155" stroke-width="1"/>
+    <text x="85" y="365" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#93c5fd" text-anchor="middle">• Prometheus (Metrics)</text>
+    <text x="85" y="388" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#f59e0b" text-anchor="middle">• Grafana (Dashboards)</text>
+    <text x="85" y="411" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#e2e8f0" text-anchor="middle">• Loki (Log Aggregation)</text>
+    <text x="85" y="434" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#a855f7" text-anchor="middle">• Tempo (Distributed Traces)</text>
+    <text x="85" y="457" font-family="Calibri, Arial, sans-serif" font-size="11" fill="#34d399" text-anchor="middle">• Kiali (Mesh Visualizer)</text>
+    <text x="85" y="480" font-family="Calibri, Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">OpenTelemetry SDK</text>
+  </g>
+</svg>

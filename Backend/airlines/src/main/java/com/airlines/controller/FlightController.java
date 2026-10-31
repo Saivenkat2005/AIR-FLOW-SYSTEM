@@ -1,6 +1,5 @@
 package com.airlines.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.airlines.entity.Flight;
@@ -15,8 +14,11 @@ import java.util.List;
 @CrossOrigin("*")
 public class FlightController {
 
-    @Autowired
-    private FlightService flightService;
+    private final FlightService flightService;
+
+    public FlightController(FlightService flightService) {
+        this.flightService = flightService;
+    }
 
     @PostMapping("/add")
     public Flight insertFlight(@Valid @RequestBody Flight flight) {

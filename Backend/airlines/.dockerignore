@@ -1,7 +1,6 @@
 target
-.mvn
-mvnw
-mvnw.cmd
 .git
 .gitignore
-Dockerfile
+.settings
+.project
+.classpath

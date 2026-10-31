@@ -19,4 +19,6 @@ public class Booking {
     private String date;
     private Long nop;
     private Long totalPrice;
+    private String pnr;
+    private String ticketEmailStatus;
 }

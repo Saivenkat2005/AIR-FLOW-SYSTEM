@@ -1,0 +1,36 @@
+airline-nexus/
+├── frontend/
+│   ├── src/
+│   │   ├── Components/
+│   │   ├── Service/
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── package.json
+│   ├── vite.config.js
+│   └── Dockerfile [FRONTEND]
+├── backend/
+│   ├── airlines/ (core-service) [BACKEND]
+│   │   ├── src/main/java/com/airlines/
+│   │   ├── pom.xml
+│   │   └── Dockerfile
+├── backend-nexus/
+│   ├── api-gateway/ [API]
+│   │   ├── server.js
+│   │   └── Dockerfile
+│   ├── flight-service/ (Pending extraction)
+│   ├── booking-service/ (Pending extraction)
+│   ├── user-service/ (Pending extraction)
+│   ├── seat-service/ (Pending extraction)
+│   └── ...
+├── ai-service/
+│   ├── app/
+│   ├── requirements.txt
+│   └── Dockerfile
+├── config/
+│   ├── prometheus/ [CONFIG]
+│   └── grafana/ [CONFIG]
+├── docker-compose.yml [DOCKER]
+├── .env [CONFIG] [SECURITY]
+├── retry_pull.ps1
+└── README.md

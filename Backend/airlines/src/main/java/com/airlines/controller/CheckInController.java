@@ -4,7 +4,6 @@ import com.airlines.entity.ManifestRecord;
 import com.airlines.handlers.OverbookedException;
 import com.airlines.service.CheckInService;
 import com.airlines.service.OverbookingResolutionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/checkin")
 public class CheckInController {
 
-    @Autowired
-    private CheckInService checkInService;
+    private final CheckInService checkInService;
+    private final OverbookingResolutionService overbookingResolutionService;
 
-    @Autowired
-    private OverbookingResolutionService overbookingResolutionService;
+    public CheckInController(CheckInService checkInService, OverbookingResolutionService overbookingResolutionService) {
+        this.checkInService = checkInService;
+        this.overbookingResolutionService = overbookingResolutionService;
+    }
 
     @PostMapping("/{bookingId}")
     public ResponseEntity<?> checkIn(@PathVariable Long bookingId) throws com.airlines.handlers.ResourceNotAvailableException {
